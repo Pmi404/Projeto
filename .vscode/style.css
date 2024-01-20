@@ -124,6 +124,7 @@ ul li a {
 ul li a:hover {
   background: var(--surface-color-hover);
   border: 1.5px solid var(--text-color);
+  scale: 1.02;
 }
 
 /*social-links*/
@@ -147,6 +148,7 @@ ul li a:hover {
 
 #social-links a:hover {
   background: var(--highlight-color);
+  scale: 1.2;
 }
 
 footer {
@@ -183,4 +185,8 @@ footer {
   to {
     left: 0;
   }
+}
+
+#rocketseat :hover {
+  color: magenta;
 }
