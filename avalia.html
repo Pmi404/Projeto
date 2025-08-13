@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Avaliação de Produtos</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f8f8f8;
+    padding: 20px;
+  }
+
+  h1 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  p {
+    text-align: center;
+    color: #555;
+    margin-bottom: 20px;
+  }
+
+  .item {
+    background: #fff;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+
+  .thumb {
+    width: 90px;
+    height: 90px;
+    border-radius: 10px;
+    background-size: cover;
+    background-position: center;
+    flex-shrink: 0;
+  }
+
+  .meta {
+    flex: 1;
+  }
+
+  .name {
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+  }
+
+  .stars {
+    display: flex;
+    gap: 5px;
+  }
+
+  .star {
+    font-size: 1.8rem;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+
+  .star.active {
+    color: gold;
+  }
+</style>
+</head>
+<body>
+
+<h1>Avalie nossos produtos</h1>
+<p>Escolha quantas estrelas cada item merece!</p>
+
+<div class="item" data-id="1">
+  <div class="thumb" style="background-image:url('https://via.placeholder.com/90')"></div>
+  <div class="meta">
+    <div class="name">Produto 1</div>
+    <div class="stars">
+      <span class="star" data-value="1">★</span>
+      <span class="star" data-value="2">★</span>
+      <span class="star" data-value="3">★</span>
+      <span class="star" data-value="4">★</span>
+      <span class="star" data-value="5">★</span>
+    </div>
+  </div>
+</div>
+
+<div class="item" data-id="2">
+  <div class="thumb" style="background-image:url('https://via.placeholder.com/90')"></div>
+  <div class="meta">
+    <div class="name">Produto 2</div>
+    <div class="stars">
+      <span class="star" data-value="1">★</span>
+      <span class="star" data-value="2">★</span>
+      <span class="star" data-value="3">★</span>
+      <span class="star" data-value="4">★</span>
+      <span class="star" data-value="5">★</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Carregar avaliações salvas
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".item").forEach(item => {
+      const id = item.dataset.id;
+      const savedRating = localStorage.getItem("rating_" + id);
+
+      if (savedRating) {
+        highlightStars(item, parseInt(savedRating));
+      }
+
+      item.querySelectorAll(".star").forEach(star => {
+        star.addEventListener("click", () => {
+          const value = parseInt(star.dataset.value);
+          localStorage.setItem("rating_" + id, value);
+          highlightStars(item, value);
+        });
+      });
+    });
+  });
+
+  function highlightStars(item, rating) {
+    item.querySelectorAll(".star").forEach(star => {
+      star.classList.toggle("active", parseInt(star.dataset.value) <= rating);
+    });
+  }
+</script>
+
+</body>
+</html>
