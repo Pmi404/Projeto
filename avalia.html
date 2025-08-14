@@ -1,136 +1,175 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Menu de Avaliações</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #fafafa;
-      margin: 0;
-      padding: 20px;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu Interativo</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f8f9fa;
+    margin: 0;
+    padding: 20px;
+  }
 
-    h1 {
-      text-align: center;
-      margin-bottom: 15px;
-      color: #333;
-    }
+  h1 {
+    text-align: center;
+    margin-bottom: 15px;
+  }
 
-    p {
-      text-align: center;
-      font-size: 1.1rem;
-      color: #666;
-      margin-bottom: 30px;
-    }
+  .menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
 
-    .menu {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
+  .item {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
 
-    .item {
-      background: #fff;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s;
-    }
+  .item:hover {
+    transform: scale(1.05);
+  }
 
-    .item:hover {
-      transform: scale(1.02);
-    }
+  .item img {
+    width: 100%;
+    max-width: 180px;
+    border-radius: 10px;
+  }
 
-    .item img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      display: block;
-    }
+  .item h3 {
+    margin: 10px 0 5px;
+    font-size: 1.2rem;
+  }
 
-    .info {
-      padding: 15px;
-      text-align: center;
-    }
+  .price {
+    color: #28a745;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+  }
 
-    .info h3 {
-      margin-bottom: 10px;
-      font-size: 1.2rem;
-      color: #333;
-    }
+  .description {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 10px;
+  }
 
-    .stars {
-      font-size: 24px;
-      color: #ccc;
-      cursor: pointer;
-    }
+  .stars {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
 
-    .stars .active {
-      color: #ffb400;
-    }
-  </style>
+  .star {
+    color: #ccc;
+    transition: color 0.3s;
+  }
+
+  .star.active {
+    color: #f5b301;
+  }
+</style>
 </head>
 <body>
-  <h1>Menu de Avaliações</h1>
-  <p>Experimente os nossos pratos e avalie com estrelas!</p>
 
-  <div class="menu">
-    <div class="item" data-id="1">
-      <img src="https://source.unsplash.com/400x300/?pizza" alt="Pizza">
-      <div class="info">
-        <h3>Pizza Especial</h3>
-        <div class="stars">
-          ★★★★★
-        </div>
-      </div>
-    </div>
+<h1>Nosso Cardápio</h1>
+<p style="text-align:center; color:#555;">Avalie os produtos com estrelas!</p>
 
-    <div class="item" data-id="2">
-      <img src="https://source.unsplash.com/400x300/?hamburger" alt="Hambúrguer">
-      <div class="info">
-        <h3>Hambúrguer Gourmet</h3>
-        <div class="stars">
-          ★★★★★
-        </div>
-      </div>
-    </div>
-
-    <div class="item" data-id="3">
-      <img src="https://source.unsplash.com/400x300/?salad" alt="Salada">
-      <div class="info">
-        <h3>Salada Fit</h3>
-        <div class="stars">
-          ★★★★★
-        </div>
-      </div>
+<div class="menu">
+  <div class="item" data-id="1">
+    <img src="https://via.placeholder.com/180x120?text=Pizza" alt="Pizza">
+    <h3>Pizza Calabresa</h3>
+    <div class="price">R$ 29,90</div>
+    <div class="description">Massa fina, queijo derretido e calabresa crocante.</div>
+    <div class="stars">
+      <span class="star" data-value="1">&#9733;</span>
+      <span class="star" data-value="2">&#9733;</span>
+      <span class="star" data-value="3">&#9733;</span>
+      <span class="star" data-value="4">&#9733;</span>
+      <span class="star" data-value="5">&#9733;</span>
     </div>
   </div>
 
-  <script>
-    document.querySelectorAll('.item').forEach(item => {
-      const starsContainer = item.querySelector('.stars');
-      const itemId = item.getAttribute('data-id');
-      let rating = localStorage.getItem('rating-' + itemId) || 0;
+  <div class="item" data-id="2">
+    <img src="https://via.placeholder.com/180x120?text=Burger" alt="Hambúrguer">
+    <h3>Hambúrguer Artesanal</h3>
+    <div class="price">R$ 24,90</div>
+    <div class="description">Carne suculenta, queijo cheddar e molho especial.</div>
+    <div class="stars">
+      <span class="star" data-value="1">&#9733;</span>
+      <span class="star" data-value="2">&#9733;</span>
+      <span class="star" data-value="3">&#9733;</span>
+      <span class="star" data-value="4">&#9733;</span>
+      <span class="star" data-value="5">&#9733;</span>
+    </div>
+  </div>
 
-      function renderStars(rating) {
-        starsContainer.innerHTML = '';
-        for (let i = 1; i <= 5; i++) {
-          const star = document.createElement('span');
-          star.textContent = '★';
-          star.classList.add(i <= rating ? 'active' : '');
-          star.addEventListener('click', () => {
-            rating = i;
-            localStorage.setItem('rating-' + itemId, rating);
-            renderStars(rating);
-          });
-          starsContainer.appendChild(star);
+  <div class="item" data-id="3">
+    <img src="https://via.placeholder.com/180x120?text=Salada" alt="Salada">
+    <h3>Salada Tropical</h3>
+    <div class="price">R$ 19,90</div>
+    <div class="description">Mix de folhas frescas com frutas e molho leve.</div>
+    <div class="stars">
+      <span class="star" data-value="1">&#9733;</span>
+      <span class="star" data-value="2">&#9733;</span>
+      <span class="star" data-value="3">&#9733;</span>
+      <span class="star" data-value="4">&#9733;</span>
+      <span class="star" data-value="5">&#9733;</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Função para salvar a avaliação no localStorage
+  function salvarAvaliacao(itemId, rating) {
+    localStorage.setItem('rating_' + itemId, rating);
+  }
+
+  // Função para carregar avaliações salvas
+  function carregarAvaliacao(itemId, stars) {
+    const ratingSalvo = localStorage.getItem('rating_' + itemId);
+    if (ratingSalvo) {
+      stars.forEach(star => {
+        if (parseInt(star.dataset.value) <= ratingSalvo) {
+          star.classList.add('active');
         }
-      }
+      });
+    }
+  }
 
-      renderStars(rating);
+  document.querySelectorAll('.item').forEach(item => {
+    const stars = item.querySelectorAll('.star');
+    const itemId = item.dataset.id;
+
+    // Carregar avaliações salvas
+    carregarAvaliacao(itemId, stars);
+
+    stars.forEach(star => {
+      star.addEventListener('click', () => {
+        const valor = parseInt(star.dataset.value);
+
+        // Atualiza visual
+        stars.forEach(s => s.classList.remove('active'));
+        stars.forEach(s => {
+          if (parseInt(s.dataset.value) <= valor) {
+            s.classList.add('active');
+          }
+        });
+
+        // Salva no localStorage
+        salvarAvaliacao(itemId, valor);
+      });
     });
-  </script>
+  });
+</script>
+
 </body>
 </html>
